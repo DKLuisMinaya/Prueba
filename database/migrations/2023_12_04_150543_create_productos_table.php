@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->string('precio');
             $table->integer('cantidad');
+            $table->boolean('estado')->default(true);
             $table->foreignId('producto_id')->constrained('categorias');
         });
     }
