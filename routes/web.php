@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
+use App\Models\Producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[CategoriaController::class, 'principal']);
+
+Route::get('/indexCategoria',[CategoriaController::class, 'index']);
+Route::get('/indexProducto',[ProductoController::class, 'index']);
+
+Route::post('/categoria',[CategoriaController::class,'registrar']);
+Route::post('/producto',[ProductoController::class,'saveProducto']);

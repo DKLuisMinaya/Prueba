@@ -9,16 +9,24 @@ use Illuminate\Support\Facades\DB;
 class ProductoController extends Controller
 {
     
+    
     public function index()
     {
-        $producto = Producto::where('estado', 1)->get();
-        return view('producto', compact('producto'));   
+        $categoria = Categoria::where('estado', 1)->get();
+        return view('producto', compact('categoria'));   
     }
 
     
-    public function create()
-    {
-        //
+    public function saveProducto(Request $request){
+        $datos = new Producto();
+        $datos->nombre = $request->nombre;
+        $datos->fecha = $request->fecha;
+        $datos->precio = $request->cantidad;
+        $datos->cantidad = $request->cantidad;
+        $datos->estado = true;
+        $datos->producto_id = $request->id_categoria;
+        $datos->save();
+        return back();
     }
 
 }
