@@ -29,7 +29,7 @@
 
         <button type="submit">Agregar</button>
     </form>
-
-    
+    <br>
+    <button><a href="{{url('datos')}}">Ver productos</a></button>
 </body>
 </html>

@@ -23,3 +23,8 @@ Route::get('/indexProducto',[ProductoController::class, 'index']);
 
 Route::post('/categoria',[CategoriaController::class,'registrar']);
 Route::post('/producto',[ProductoController::class,'saveProducto']);
+
+Route::get('/filtrar', [ProductoController::class, 'filtrar']);
+Route::get('/datos', [ProductoController::class, 'mostrar']);
+
+Route::delete('/datos/{id}', [ProductoController::class, 'eliminar']);

@@ -28,5 +28,35 @@ class ProductoController extends Controller
         $datos->save();
         return back();
     }
+    public function mostrar(){
+        $categoria = Categoria::where('estado', 1)->get();
+        $productos = DB::table('productos')
+        ->join('categorias', 'producto_id', '=', 'categorias.id')
+        ->where('productos.estado', 1)
+        ->select('productos.*', 'categorias.categoria')
+        ->get();
+         return view('tabla',compact('productos', 'categoria'));
+    }
 
+    public function filtrar(Request $request){
+        $categoria = Categoria::where('estado', 1)->get();
+        $productos = DB::table('productos')
+        ->join('categorias', 'producto_id', '=', 'categorias.id')
+        ->where('productos.estado', 1)
+        ->where('categorias.id', '=', $request->datoFiltrado)
+        ->select('productos.*', 'categorias.categoria')
+        ->get();
+        return view('tabla',compact('productos', 'categoria'));
+    }
+    public function eliminar($id){
+        $producto = Producto::find($id);
+        if($producto){
+            $producto->estado = false;
+            $producto->save();
+            return back();
+        }
+
+    }
+
+    
 }
